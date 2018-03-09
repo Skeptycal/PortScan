@@ -28,7 +28,7 @@
 			<div class="input-group-lg">
                 <input type="text" id="thread" class="form-control" aria-label="..." name="thread"  placeholder="线程:20">
                 <input type="text" id="port" class="form-control" aria-label="..." name="port"  placeholder="端口:80-100">
-                <input type="text" id="ip" class="form-control" aria-label="..." name="ip" placeholder="ip或ip段:192.168.43.90">
+                <input type="text" id="ip" class="form-control" aria-label="..." name="ip" placeholder="ip或ip段:127.0.0.1或127.0.0.1/24">
                 <input type="hidden" id="blank" class="form-control" aria-label="..." >
                 <center>
                 <button type="button" id="scan" name="scan" class="btn btn-info btn-lg " aria-haspopup="true" aria-expanded="false"><b>单IP扫描</b></button>
@@ -87,7 +87,16 @@ function request(type){
     	if(results){
     	    for(var i in results){
     	        if(results[i].indexOf("[+]") !=-1){
-    	            outhtml+='<li class="list-group-item"><span class="text-success">'+results[i]+'</span></li>'
+    	            out=results[i].split("[+]")
+    	            count=out.length
+                    if(count){
+                        outhtml+='<li class="list-group-item"><span class="text-success">'+results[i].split(" ")[0].split("[+]")[1]+'</span></li>'
+                        for(var s=1;s<count;s++){
+                            outhtml+='<li class="list-group-item"><span class="text-success">[+]'+out[s]+'</span></li>'
+                        }
+                    }else{
+                        outhtml+='<li class="list-group-item"><span class="text-success">'+results[i]+'</span></li>'
+                    }
     	        }else{
     	            outhtml+='<li class="list-group-item"><span class="text-danger">'+results[i]+'</span></li>'
     	        }

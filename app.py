@@ -71,7 +71,7 @@ def scan():
     else:
         pass
     if openlist != []:
-        return jsonify(openlist[0].split("\n")[:-1])
+        return jsonify(openlist)
     else:
         return jsonify(openlist)
 

@@ -38,7 +38,7 @@ class ScanThread(threading.Thread):
             # results = sock.recv(100)
             screenLock.acquire()
             # print '[+]IP:%s %d/tcp open' % (self.IP, Port)
-            write_file(self.IP, '[+]IP:%s %d/tcp open' % (self.IP, Port) + '\n')
+            write_file(self.IP, '[+]IP:%s %d/tcp open' % (self.IP, Port))
             screenLock.release()
             sock.close()
         except:
